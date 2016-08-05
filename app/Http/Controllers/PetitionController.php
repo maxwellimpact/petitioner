@@ -18,7 +18,7 @@ class PetitionController extends Controller
      */
     public function index()
     {
-        $petitions = Auth::user()->petitions;
+        $petitions = Auth::user()->petitions()->paginate(10);
         
         return view('petition.index', ['petitions' => $petitions]);
     }

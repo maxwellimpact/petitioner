@@ -14,6 +14,8 @@
                             <h3>{{ $petition->title }}</h3>
                         </div>
                     @endforeach
+                    
+                    {!! $petitions->links() !!}
                 </div>
             </div>
         </div>
