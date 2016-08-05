@@ -27,6 +27,16 @@ class PetitionTest extends TestCase
         });
     }
     
+    public function testUserCanClickToPetitionsFromMainMenu()
+    {
+        $user = factory(User::class)->create();
+        
+        $this->actingAs($user)
+             ->visit('/')
+             ->click('Petitions')
+             ->seePageIs('/petitions');
+    }
+    
     public function testUserCanCreatePetitionByPost()
     {
         $user = factory(User::class)->create();
