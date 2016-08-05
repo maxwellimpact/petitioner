@@ -11,6 +11,9 @@
                   @endif
                 @endforeach
             @endif
+            @if(isset($checked) && $checked)
+            checked='checked' 
+            @endif
             type="checkbox" class="checkbox" name="{{ $name }}" value="{{ old($name, isset($value)?$value:null) }}">
             {{ $label }}
         </label>

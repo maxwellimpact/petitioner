@@ -36,11 +36,14 @@
               ]
             ])
             
+            <input type='hidden' value='false' name='published' />
+            
             @include('forms.controls.checkbox', [
               'name' => 'published',
               'label' => 'published',
               'type' => 'checkbox',
-              'value' => isset($petition) ? $petition->published : null,
+              'value' => true,
+              'checked' => isset($petition) && $petition->published ? 'checked' : false
             ])
 
             @include('forms.controls.textarea', [
