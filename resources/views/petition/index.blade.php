@@ -43,7 +43,7 @@
                                         <span class="glyphicon glyphicon-ok-sign text-success" aria-hidden="true"></span> Publish
                                     </a>
                                     @endif
-                                    <a class="btn btn-primary">
+                                    <a class="btn btn-primary" href="{{ action('PetitionController@edit', ['id'=>$petition->id]) }}">
                                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit
                                     </a>
                                 </div>

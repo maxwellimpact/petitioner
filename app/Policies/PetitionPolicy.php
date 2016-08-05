@@ -14,5 +14,10 @@ class PetitionPolicy
     {
         return $user->id == $petition->user->id;
     }
+
+    public function edit(User $user, Petition $petition)
+    {
+        return $user->id == $petition->user->id;
+    }
     
 }

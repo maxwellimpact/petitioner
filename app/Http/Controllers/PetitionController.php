@@ -75,9 +75,14 @@ class PetitionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Petition $petitions)
     {
-        //
+        
+        if(Gate::denies('view', $petitions)) {
+            abort(403);
+        }
+        
+        return view('petition.edit', ['petition' => $petitions]);
     }
 
     /**
@@ -87,9 +92,16 @@ class PetitionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Petition $petitions)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|max:255',
+            'summary' => 'required',
+            'body' => 'required',
+        ]);
+        
+        $petitions->fill($request->all());
+        $petitions->save();
     }
 
     /**

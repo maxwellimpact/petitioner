@@ -111,5 +111,25 @@ class PetitionTest extends TestCase
              ->assertResponseStatus(200)
              ->see($petition->title);
     }
+    
+    public function testUserOwnerCanEditPetition()
+    {
+        $user = factory(User::class)->create();
+        $petition = factory(Petition::class)->make();
+        $user->petitions()->save($petition);
+        
+        $petition->title += ' changed';
+        
+        $this->actingAs($user)
+             ->visit('/petitions/'.$petition->id.'/edit')
+             ->type($petition->title, 'title')
+             ->press('Update')
+             ->assertResponseOk();
+             
+        $found = Petition::find($petition->id);
+        
+        $this->assertTrue($petition->title == $found->title);
+        
+    }
 
 }

@@ -1,5 +1,9 @@
 <form action="{{ $action_url }}" method="POST">
     {{ csrf_field() }}
+    
+    @if(isset($method) && $method == 'PUT')
+    {{ method_field('PUT') }}
+    @endif
 
     <div>
       <!-- Nav tabs -->
@@ -26,7 +30,7 @@
             @include('forms.controls.input', [
               'name' => 'title',
               'label' => 'Title',
-              'value' => '',
+              'value' => isset($petition) ? $petition->title : null,
               'attributes' => [
                   'placeholder' => 'enter clever title here'
               ]
@@ -36,13 +40,13 @@
               'name' => 'published',
               'label' => 'published',
               'type' => 'checkbox',
-              'value' => ''
+              'value' => isset($petition) ? $petition->published : null,
             ])
 
             @include('forms.controls.textarea', [
               'name' => 'summary',
               'label' => 'Summary',
-              'value' => '',
+              'value' => isset($petition) ? $petition->summary : null,
               'attributes' => [
                   'placeholder' => 'type a simple summary'
               ]
@@ -51,7 +55,7 @@
             @include('forms.controls.textarea', [
               'name' => 'body',
               'label' => 'Body',
-              'value' => '',
+              'value' => isset($petition) ? $petition->body : null,
               'attributes' => [
                   'placeholder' => 'give as much detail as you can but be concise',
                   'rows' => 15
@@ -64,7 +68,7 @@
             @include('forms.controls.textarea', [
               'name' => 'thanks_message',
               'label' => 'Thank You Message',
-              'value' => '',
+              'value' => isset($petition) ? $petition->thanks_message : null,
               'attributes' => [
                   'placeholder' => 'say something nice to your signees',
                   'rows' => 15
@@ -76,7 +80,7 @@
             @include('forms.controls.input', [
               'name' => 'thanks_email_subject',
               'label' => 'Subject',
-              'value' => '',
+              'value' => isset($petition) ? $petition->thanks_email_subject : null,
               'attributes' => [
                   'placeholder' => ''
               ]
@@ -85,7 +89,7 @@
             @include('forms.controls.textarea', [
               'name' => 'thanks_email_body',
               'label' => 'Body',
-              'value' => '',
+              'value' => isset($petition) ? $petition->thanks_email_body : null,
               'attributes' => [
                   'placeholder' => '',
                   'rows' => 15
