@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         
         $users->each(function($user){
             echo $user->email . PHP_EOL;
-            $user->petitions()->saveMany(factory(App\Petition::class, 6)->make());
+            $user->petitions()->saveMany(factory(App\Petition::class, 25)->make());
         });
     }
 }
