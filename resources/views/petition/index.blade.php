@@ -25,7 +25,7 @@
                             <div class="petition-item">
                                 <h4>{{ $petition->title }}</h4>
                                 <div class="petition-item-summary">
-                                    {{ $petition->summary }}
+                                    {!! $petition->summary !!}
                                 </div>
                                 <div class="text-right petition-item-actions">
                                     <a class="btn btn-default pull-left" href="{{ action('PetitionController@show', ['id'=>$petition->id]) }}">
