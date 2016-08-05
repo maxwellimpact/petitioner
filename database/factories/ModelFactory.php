@@ -31,3 +31,11 @@ $factory->define(App\Petition::class, function (Faker\Generator $faker) {
         'thanks_email_body' => $faker->realText(250, 1)
     ];
 });
+
+$factory->define(App\Sign::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->name,
+        'email' => $faker->safeEmail,
+        'phone' => $faker->phoneNumber,
+    ];
+});

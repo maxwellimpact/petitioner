@@ -18,7 +18,9 @@ class PetitionController extends Controller
      */
     public function index()
     {
-        $petitions = Auth::user()->petitions()->paginate(10);
+        $petitions = Auth::user()->petitions()
+                                 ->orderBy('created_at', 'desc')
+                                 ->paginate(10);
         
         return view('petition.index', ['petitions' => $petitions]);
     }
@@ -102,6 +104,10 @@ class PetitionController extends Controller
         
         $petitions->fill($request->all());
         $petitions->save();
+        
+        $request->session()->flash('update', true);
+        
+        return redirect()->action('PetitionController@index');
     }
 
     /**

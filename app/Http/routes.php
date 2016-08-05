@@ -20,3 +20,7 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::resource('petitions', 'PetitionController');
+
+Route::resource('petitions.signs', 'SignController', [
+    'parameters' => 'singular'
+]);

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Sign;
 use App\User;
 
 class Petition extends Model
@@ -17,5 +18,10 @@ class Petition extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    
+    public function signs()
+    {
+        return $this->hasMany(Sign::class);
     }
 }
