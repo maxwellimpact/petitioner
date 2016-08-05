@@ -2,9 +2,15 @@
 
 .petition-group {
     
-    .petition-group-item {
+    .petition-item {
         margin-bottom: 1em;
         padding: 1em;
         border: 1px solid #eee;
+    }
+    
+    .petition-item-actions {
+        margin-top: 1em;
+        padding-top: 1em;
+        border-top: 1px solid #eee;
     }
 }

@@ -22,12 +22,15 @@
                 <div class="panel-body">
                     <div class="petition-group">
                         @foreach($petitions as $petition)                            
-                            <div class="petition-group-item">
+                            <div class="petition-item">
                                 <h4>{{ $petition->title }}</h4>
-                                <div>
+                                <div class="petition-item-summary">
                                     {{ $petition->summary }}
                                 </div>
-                                <div class="text-right">
+                                <div class="text-right petition-item-actions">
+                                    <a class="btn btn-default pull-left" href="{{ action('PetitionController@show', ['id'=>$petition->id]) }}">
+                                        <span class="glyphicon glyphicon-eye-open text-primary" aria-hidden="true"></span> View
+                                    </a>
                                     <a class="btn btn-default">
                                         <span class="glyphicon glyphicon-trash text-danger" aria-hidden="true"></span> Delete
                                     </a>

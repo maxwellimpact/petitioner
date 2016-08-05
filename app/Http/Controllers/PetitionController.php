@@ -58,9 +58,18 @@ class PetitionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Petition $petitions)
     {
-        //
+        $user = Auth::user();
+        
+        if(
+            (!$user && !$petitions->published) || 
+            ($user && $user->id != $petitions->user->id)) 
+        {
+            abort(404);
+        } 
+        
+        return view('petition.show', ['petition' => $petitions]);
     }
 
     /**

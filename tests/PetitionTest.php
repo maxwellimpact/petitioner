@@ -72,5 +72,44 @@ class PetitionTest extends TestCase
             'title' => $petition->title
         ]);
     }
+    
+    public function testVisitorCanSeePublishedPetition()
+    {
+        $user = factory(User::class)->create();
+        $petition = factory(Petition::class)->make([
+            'published' => true
+        ]);
+        $user->petitions()->save($petition);
+        
+        $this->get('/petitions/'.$petition->id)
+             ->assertResponseStatus(200)
+             ->see($petition->title);
+    }
+
+    public function testVisitorCantSeeUnpublishedPetition()
+    {
+        $user = factory(User::class)->create();
+        $petition = factory(Petition::class)->make([
+            'published' => false
+        ]);
+        $user->petitions()->save($petition);
+        
+        $this->get('/petitions/'.$petition->id)
+             ->assertResponseStatus(404);
+    }
+
+    public function testUserOwnerCanSeeUnpublishedPetition()
+    {
+        $user = factory(User::class)->create();
+        $petition = factory(Petition::class)->make([
+            'published' => false
+        ]);
+        $user->petitions()->save($petition);
+        
+        $this->actingAs($user)
+             ->get('/petitions/'.$petition->id)
+             ->assertResponseStatus(200)
+             ->see($petition->title);
+    }
 
 }
