@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Auth;
-
+use Gate;
 use App\Http\Requests;
 use App\Petition;
 
@@ -60,14 +60,11 @@ class PetitionController extends Controller
      */
     public function show(Petition $petitions)
     {
-        $user = Auth::user();
-        
-        if(
-            (!$user && !$petitions->published) || 
-            ($user && $user->id != $petitions->user->id)) 
-        {
+        if(Auth::guest() && !$petitions->published) {
             abort(404);
-        } 
+        } else if(Auth::check() && Gate::denies('view', $petitions)) {
+            abort(403);
+        }
         
         return view('petition.show', ['petition' => $petitions]);
     }
