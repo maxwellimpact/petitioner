@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use App\Petition;
+
 class User extends Authenticatable
 {
     /**
@@ -23,4 +25,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function petitions()
+    {
+        return $this->hasMany(Petition::class);
+    }
 }

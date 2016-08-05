@@ -19,3 +19,15 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Petition::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->name,
+        'summary' => $faker->realText(150, 1),
+        'body' => $faker->realText(350, 1),
+        'published' => $faker->boolean,
+        'thanks_message' => $faker->realText(150, 1),
+        'thanks_email_subject' => $faker->sentence,
+        'thanks_email_body' => $faker->realText(250, 1)
+    ];
+});
