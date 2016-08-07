@@ -22,7 +22,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Petition::class, function (Faker\Generator $faker) {
     return [
-        'title' => $faker->name,
+        'title' => $faker->sentence,
         'summary' => $faker->realText(150, 1),
         'body' => $faker->realText(350, 1),
         'published' => $faker->boolean,
@@ -34,7 +34,7 @@ $factory->define(App\Petition::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Sign::class, function (Faker\Generator $faker) {
     return [
-        'title' => $faker->name,
+        'name' => $faker->name,
         'email' => $faker->safeEmail,
         'phone' => $faker->phoneNumber,
     ];
