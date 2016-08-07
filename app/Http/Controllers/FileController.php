@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Auth;
 use Storage;
 use App\Http\Requests;
+use App\File;
 
 class FileController extends Controller
 {
@@ -41,9 +43,18 @@ class FileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, File $file)
     {
-        //
+        $this->validate($request, [
+            'url' => 'required'
+        ]);
+        
+        $user = Auth::user();
+        
+        $file->fill($request->all());
+        $user->files()->save($file);
+        
+        return $file;
     }
 
     /**

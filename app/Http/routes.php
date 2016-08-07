@@ -30,6 +30,10 @@ Route::resource('petitions.signs', 'SignController', [
     'parameters' => 'singular'
 ]);
 
+Route::resource('files', 'FileController', [
+    'parameters' => 'singular'
+]);
+
 Route::get('/files/create', function() {
     return view('files.create');
 });

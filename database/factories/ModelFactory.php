@@ -39,3 +39,9 @@ $factory->define(App\Sign::class, function (Faker\Generator $faker) {
         'phone' => $faker->phoneNumber,
     ];
 });
+
+$factory->define(App\File::class, function (Faker\Generator $faker) {
+    return [
+        'url' => $faker->imageUrl(800, 600, 'cats')
+    ];
+});
