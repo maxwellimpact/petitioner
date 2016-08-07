@@ -12,7 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $petitions = App\Petition::recentPublished()
+                         ->paginate(10);
+                     
+    return view('welcome', ['petitions' => $petitions]);
 });
 
 Route::auth();

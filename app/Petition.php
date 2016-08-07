@@ -24,4 +24,10 @@ class Petition extends Model
     {
         return $this->hasMany(Sign::class);
     }
+    
+    public function scopeRecentPublished($query)
+    {
+        return $query->orderBy('updated_at', 'desc')
+                     ->where('published', 1);
+    }
 }

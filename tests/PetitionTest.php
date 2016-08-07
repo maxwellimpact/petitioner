@@ -97,6 +97,21 @@ class PetitionTest extends TestCase
         $this->get('/petitions/'.$petition->id)
              ->assertResponseStatus(404);
     }
+    
+    public function testVisitorCanSeeOnlyPublishedPetitionsOnHomepage()
+    {
+        $user = factory(User::class)->create();
+        $petitions = factory(Petition::class, 2)->make([
+            'published' => true
+        ]);
+        $user->petitions()->saveMany($petitions);
+        
+        $this->get('/');
+        
+        $petitions->each(function($petition){
+            $this->see($petition->title);
+        });
+    }
 
     public function testUserOwnerCanSeeUnpublishedPetition()
     {
@@ -130,6 +145,24 @@ class PetitionTest extends TestCase
         
         $this->assertTrue($petition->title == $found->title);
         
+    }
+    
+    public function testPetitionRecentPublishedScope()
+    {
+        $user = factory(User::class)->create();
+        $petitions_false = factory(Petition::class, 2)->make(['published'=>false]);
+        $petitions_true = factory(Petition::class, 2)->make(['published'=>true]);
+        
+        $user->petitions()->saveMany($petitions_false);
+        $user->petitions()->saveMany($petitions_true);
+        
+        $published = $user->petitions()->recentPublished()->get();
+        
+        $this->assertTrue($published->count() == $petitions_true->count());
+        
+        $petitions_true->each(function($petition, $key) use ($published) {
+            $this->assertTrue($petition->id == $published[$key]->id);
+        });
     }
 
 }
