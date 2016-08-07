@@ -29,3 +29,9 @@ Route::resource('petitions', 'PetitionController', [
 Route::resource('petitions.signs', 'SignController', [
     'parameters' => 'singular'
 ]);
+
+Route::get('/files/create', function() {
+    return view('files.create');
+});
+
+Route::post('/files/sign', 'FileController@sign');
