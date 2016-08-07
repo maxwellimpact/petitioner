@@ -59,11 +59,11 @@
                                     </form>
                                     @if( !$petition->published )
                                     <a class="btn btn-default">
-                                        <span class="glyphicon glyphicon-remove-sign text-warning" aria-hidden="true"></span> Unpublish
+                                        <span class="glyphicon glyphicon-remove-sign text-warning" aria-hidden="true"></span> Unpublished
                                     </a>
                                     @else
                                     <a class="btn btn-default">
-                                        <span class="glyphicon glyphicon-ok-sign text-success" aria-hidden="true"></span> Publish
+                                        <span class="glyphicon glyphicon-ok-sign text-success" aria-hidden="true"></span> Published
                                     </a>
                                     @endif
                                     <a class="btn btn-primary" href="{{ action('PetitionController@edit', ['id'=>$petition->id]) }}">
