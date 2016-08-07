@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\File;
 use App\Sign;
 use App\User;
 
@@ -23,6 +24,11 @@ class Petition extends Model
     public function signs()
     {
         return $this->hasMany(Sign::class);
+    }
+    
+    public function files()
+    {
+        return $this->morphToMany(File::class, 'fileable');
     }
     
     public function scopeRecentPublished($query)

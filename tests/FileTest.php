@@ -5,6 +5,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 use App\File;
+use App\Petition;
 use App\User;
 
 class FileTest extends TestCase
@@ -40,6 +41,25 @@ class FileTest extends TestCase
             'id' => $id
         ]);
     }
+    
+    public function testUserSaveFileToPetition()
+    {
+        $user = factory(User::class)->create();
+        $file = factory(File::class)->make();
+        $user->files()->save($file);
+        
+        $petition = factory(Petition::class)->make();
+        $user->petitions()->save($petition);
+        
+        $petition->files()->attach($file);
+        
+        $this->seeInDatabase('fileables', [
+            'file_id' => $file->id,
+            'fileable_id' => $petition->id,
+            'fileable_type' => Petition::class,
+        ]);
+    }
+
     
     
 }
