@@ -11,6 +11,12 @@
             </div>
             @endif
             
+            @if(session('create') == true)
+            <div class="alert alert-success" role="alert">
+                Your petition was created succesfully.
+            </div>
+            @endif
+            
             @if(session('delete') == true)
             <div class="alert alert-danger" role="alert">
                 Your petition was deleted succesfully.

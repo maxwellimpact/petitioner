@@ -58,6 +58,9 @@ class PetitionController extends Controller
         $petition->fill($request->all());
         
         Auth::user()->petitions()->save($petition);
+        
+        return redirect()->action('PetitionController@index')
+                         ->with('create', true);
     }
 
     /**
