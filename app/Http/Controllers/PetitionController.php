@@ -60,15 +60,15 @@ class PetitionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Petition $petitions)
+    public function show(Petition $petition)
     {
-        if(Auth::guest() && !$petitions->published) {
+        if(Auth::guest() && !$petition->published) {
             abort(404);
-        } else if(Auth::check() && Gate::denies('view', $petitions)) {
+        } else if(Auth::check() && Gate::denies('view', $petition)) {
             abort(403);
         }
         
-        return view('petition.show', ['petition' => $petitions]);
+        return view('petition.show', ['petition' => $petition]);
     }
 
     /**
@@ -77,14 +77,14 @@ class PetitionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Petition $petitions)
+    public function edit(Petition $petition)
     {
         
-        if(Gate::denies('view', $petitions)) {
+        if(Gate::denies('view', $petition)) {
             abort(403);
         }
         
-        return view('petition.edit', ['petition' => $petitions]);
+        return view('petition.edit', ['petition' => $petition]);
     }
 
     /**
@@ -94,7 +94,7 @@ class PetitionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Petition $petitions)
+    public function update(Request $request, Petition $petition)
     {
         $this->validate($request, [
             'title' => 'required|max:255',
@@ -102,8 +102,8 @@ class PetitionController extends Controller
             'body' => 'required',
         ]);
         
-        $petitions->fill($request->all());
-        $petitions->save();
+        $petition->fill($request->all());
+        $petition->save();
         
         $request->session()->flash('update', true);
         
