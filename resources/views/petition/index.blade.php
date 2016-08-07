@@ -11,6 +11,12 @@
             </div>
             @endif
             
+            @if(session('delete') == true)
+            <div class="alert alert-danger" role="alert">
+                Your petition was deleted succesfully.
+            </div>
+            @endif
+            
             <div class="panel panel-default">
                 
                 <div class="panel-heading">
@@ -38,9 +44,13 @@
                                     <a class="btn btn-default pull-left" href="{{ action('PetitionController@show', ['id'=>$petition->id]) }}">
                                         <span class="glyphicon glyphicon-eye-open text-primary" aria-hidden="true"></span> View
                                     </a>
-                                    <a class="btn btn-default">
-                                        <span class="glyphicon glyphicon-trash text-danger" aria-hidden="true"></span> Delete
-                                    </a>
+                                    <form action="{{ action('PetitionController@destroy', ['id'=>$petition->id]) }}" method="POST" class="form-delete-inline">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <button class="btn btn-default" type="submit">
+                                            <span class="glyphicon glyphicon-trash text-danger" aria-hidden="true"></span> Delete
+                                        </button>
+                                    </form>
                                     @if( !$petition->published )
                                     <a class="btn btn-default">
                                         <span class="glyphicon glyphicon-remove-sign text-warning" aria-hidden="true"></span> Unpublish

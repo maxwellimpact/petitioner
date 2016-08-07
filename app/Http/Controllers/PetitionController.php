@@ -122,8 +122,14 @@ class PetitionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Petition $petition)
     {
-        //
+        if(Gate::denies('view', $petition)) {
+            abort(403);
+        }
+        
+        $petition->delete();
+        
+        return back()->with('delete', true);
     }
 }

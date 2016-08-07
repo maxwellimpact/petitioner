@@ -173,5 +173,21 @@ class PetitionTest extends TestCase
             $this->assertTrue($petition->id == $published[$key]->id);
         });
     }
+    
+    public function testUserCanDeleteOwnPetition()
+    {
+        $user = factory(User::class)->create();
+        $petition = factory(Petition::class)->make();
+        $user->petitions()->save($petition);
+        
+        $this->actingAs($user)
+             ->visit('/petitions')
+             ->press('Delete')
+             ->assertResponseOk();
+             
+        $found = Petition::find($petition->id);
+        
+        $this->assertTrue(!$found);
+    }
 
 }
