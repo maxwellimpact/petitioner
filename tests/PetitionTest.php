@@ -37,6 +37,15 @@ class PetitionTest extends TestCase
              ->seePageIs('/petitions');
     }
     
+    public function testVisitorCantSeeUserLinksInMainMenu()
+    {
+        //$user = factory(User::class)->create();
+        
+        $this->visit('/')
+             ->dontSee('Petitions')
+             ->dontSee('Home');
+    }
+    
     public function testUserCanCreatePetitionByPost()
     {
         $user = factory(User::class)->create();
