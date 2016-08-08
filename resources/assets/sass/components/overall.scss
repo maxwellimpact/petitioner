@@ -22,10 +22,11 @@ body {
     border: none;
     background: none;
     margin-top: 2em;
-}
-
-.nav-tabs>li>a {
-    border-radius: 0;
+    
+    .navbar-nav>li>a {
+        padding-top: 7px;
+        padding-bottom: 7px;
+    }
 }
 
 .panel {
