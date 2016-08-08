@@ -1,0 +1,81 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 970px;
+    }
+}
+
+.alert {
+    border-radius: 0;
+}
+
+.navbar-brand {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 2em;
+    margin-top: -2px;
+}
+
+.navbar-default {
+    border: none;
+    background: none;
+    margin-top: 2em;
+}
+
+.nav-tabs>li>a {
+    border-radius: 0;
+}
+
+.panel {
+    border: none;
+    box-shadow: none;
+}
+
+.panel-body {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.panel-default>.panel-heading {
+    background: none;
+    color: #333;
+    text-align: right;
+    padding: 0;
+    font-size: smaller;
+    text-transform: lowercase;
+    color: #aaa;
+    letter-spacing: 1px;
+}
+
+.fa-btn {
+    margin-right: 6px;
+}
+
+.btn {
+    border-radius: 0;
+}
+
+.btn.btn-primary {
+    /* Button Background: */
+    border: 1px solid #4C95C8;
+    
+    background: -webkit-linear-gradient(134deg, #4C95C8 19%, #4AE2AF 100%); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(134deg, #4C95C8 19%, #4AE2AF 100%); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(134deg, #4C95C8 19%, #4AE2AF 100%); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(134deg, #4C95C8 19%, #4AE2AF 100%); /* Standard syntax */    
+}
+
+.btn.btn-primary:hover {
+    opacity: .8;
+}
+
+.form-delete-inline {
+    display: inline;
+}
+
+.form-control {
+    border-radius: 0;
+    box-shadow: none;
+}

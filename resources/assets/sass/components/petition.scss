@@ -1,0 +1,39 @@
+.petition-group {
+    
+    .petition-item {
+        padding-top: 1em;
+        padding-bottom: 2em;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .petition-item-actions {
+        margin-top: 1em;
+        padding-top: 1em;
+        border-top: 1px solid #eee;
+    }
+    
+    .media-right {
+        vertical-align: middle;
+    }
+    
+    .media-object {
+        height: 120px;
+    }
+}
+
+@media (max-width: 720px) {
+    .petition-group {
+        
+        .media-left, .media-right, .media-body {
+            display: block;
+            float: none;
+            margin: 1em;
+            padding: 0;
+        }
+        
+        .media-object {
+            width: 100%;
+            height: auto;
+        }
+    }
+}

@@ -1,20 +1,6 @@
 // @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
-.petition-group {
-    
-    .petition-item {
-        margin-bottom: 1em;
-        padding: 1em;
-        border: 1px solid #eee;
-    }
-    
-    .petition-item-actions {
-        margin-top: 1em;
-        padding-top: 1em;
-        border-top: 1px solid #eee;
-    }
-}
-
-.form-delete-inline {
-    display: inline;
-}
+@import "./components/overall";
+@import "./components/petition";
+@import "./components/dropzone";
+@import "./components/tinymce";
