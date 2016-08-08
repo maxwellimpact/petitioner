@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
+    @section('panel-content')
             
             @if(session('update') == true)
             <div class="alert alert-success" role="alert">
@@ -25,16 +23,14 @@
             
             <div class="panel panel-default">
                 
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h4>Petition List</h4>
-                        </div>
-                        <div class="col-md-6 text-right">
-                            <a href="{{ action('PetitionController@create') }}" class="btn btn-primary">
-                                Create a Petition
-                            </a>
-                        </div>
+                <div class="row">
+                    <div class="col-md-6">
+
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <a href="{{ action('PetitionController@create') }}" class="btn btn-primary">
+                            Create a Petition
+                        </a>
                     </div>
                 </div>
 
@@ -48,26 +44,26 @@
                                 </div>
                                 <div class="text-right petition-item-actions">
                                     <a class="btn btn-default pull-left" href="{{ action('PetitionController@show', ['id'=>$petition->id]) }}">
-                                        <span class="glyphicon glyphicon-eye-open text-primary" aria-hidden="true"></span> View
+                                        <span class="glyphicon glyphicon-eye-open text-primary" aria-hidden="true"></span>
                                     </a>
                                     <form action="{{ action('PetitionController@destroy', ['id'=>$petition->id]) }}" method="POST" class="form-delete-inline">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
                                         <button class="btn btn-default" type="submit">
-                                            <span class="glyphicon glyphicon-trash text-danger" aria-hidden="true"></span> Delete
+                                            <span class="glyphicon glyphicon-trash text-danger" aria-hidden="true"></span>
                                         </button>
                                     </form>
                                     @if( !$petition->published )
                                     <a class="btn btn-default">
-                                        <span class="glyphicon glyphicon-remove-sign text-warning" aria-hidden="true"></span> Unpublished
+                                        <span class="glyphicon glyphicon-remove-sign text-warning" aria-hidden="true"></span>
                                     </a>
                                     @else
                                     <a class="btn btn-default">
-                                        <span class="glyphicon glyphicon-ok-sign text-success" aria-hidden="true"></span> Published
+                                        <span class="glyphicon glyphicon-ok-sign text-success" aria-hidden="true"></span>
                                     </a>
                                     @endif
                                     <a class="btn btn-primary" href="{{ action('PetitionController@edit', ['id'=>$petition->id]) }}">
-                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit
+                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                     </a>
                                 </div>
                             </div>
@@ -77,7 +73,8 @@
                     {!! $petitions->links() !!}
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+            
+        @endsection
+
+        @include('partials.container', ['title' => 'Your Petitions'])
 @endsection

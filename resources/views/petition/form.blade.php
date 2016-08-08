@@ -104,3 +104,10 @@
     </div>
     
 </form>
+
+<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+<script>tinymce.init({
+    selector: 'textarea',
+    menubar: false,
+    toolbar: 'undo redo | styleselect | bold italic | link'
+});</script>
