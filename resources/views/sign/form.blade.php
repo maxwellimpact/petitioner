@@ -28,7 +28,7 @@
       ]
     ])
     
-    <button type="submit" class="btn btn-primary">
+    <button type="submit" class="btn btn-primary btn-block btn-lg">
         Sign
     </button>
 </form>
