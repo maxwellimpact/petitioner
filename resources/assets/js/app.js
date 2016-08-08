@@ -1,4 +1,5 @@
 window.Vue = require('vue');
+import Sortable from 'vue-sortable'
 
 $.ajaxSetup({
     headers: {
@@ -7,6 +8,8 @@ $.ajaxSetup({
 });
 
 require('./component/uploader');
+
+Vue.use(Sortable)
 
 var app = new Vue({
   el: '#app'
