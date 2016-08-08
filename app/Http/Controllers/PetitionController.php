@@ -73,7 +73,7 @@ class PetitionController extends Controller
     {
         if(Auth::guest() && !$petition->published) {
             abort(404);
-        } else if(Auth::check() && Gate::denies('view', $petition)) {
+        } else if(Auth::check() && !$petition->published && Gate::denies('view', $petition)) {
             abort(403);
         }
         
@@ -105,6 +105,10 @@ class PetitionController extends Controller
      */
     public function update(Request $request, Petition $petition)
     {
+        if(Gate::denies('view', $petition)) {
+            abort(403);
+        }
+        
         $this->validate($request, [
             'title' => 'required|max:255',
             'summary' => 'required',
