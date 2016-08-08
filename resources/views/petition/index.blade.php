@@ -50,7 +50,7 @@
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
                                         <button class="btn btn-default" type="submit">
-                                            <span class="glyphicon glyphicon-trash text-danger" aria-hidden="true"></span>
+                                            <span class="glyphicon glyphicon-trash text-danger" aria-hidden="true"></span> <span class="hidden">Delete</span>
                                         </button>
                                     </form>
                                     @if( !$petition->published )
